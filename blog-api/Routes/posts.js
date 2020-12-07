@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
   });
 
   try {
-    const savedPost = await Post.save();
+    const savedPost = await post.save();
     res.send(savedPost);
   } catch (error) {
     res.send({ message: error });
