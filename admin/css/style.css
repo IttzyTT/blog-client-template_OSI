@@ -14,7 +14,7 @@ input[type=text], textarea {
   margin-bottom: 16px;
 }
 
-button[id=create] {
+button[id=create], #update-post-btn {
   background-color: #457ee1;
   color: white;
   padding: 12px 20px;
@@ -23,7 +23,7 @@ button[id=create] {
   cursor: pointer;
 }
 
-button[id=create]:hover {
+button[id=create]:hover, #update-post-btn:hover {
   background-color: #63bfe6;
 }
 
