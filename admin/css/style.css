@@ -1,3 +1,4 @@
+
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 h3{
@@ -33,4 +34,24 @@ button[id=create]:hover {
   padding: 20px;
   width: 50%;
   margin-left: 25%;
+
+table, thead, tr, td {
+    border: 1px solid black;
+    padding: 0.4em;
+}
+table {
+    border-collapse: collapse;
+}
+a {
+    text-decoration: none;
+}
+.center-block-element {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#admin-top-nav, #admin-create-post-nav {
+    display: flex;
+    justify-content: flex-end;
+
 }
