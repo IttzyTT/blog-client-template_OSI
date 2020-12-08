@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: black;
+  display: flex;
+  justify-content: flex-end;
+}
+header a {
+  text-decoration: none;
+  color: aqua;
+  font-family: sans-serif;
+  display: flex;
+  padding: 1rem;
+  background-color: black;
+  cursor: pointer;
+}
+body {
+  background-color: rgb(40, 39, 39);
+}
+
+#title {
+  background-color: whitesmoke;
+  margin: 5rem 5rem 0rem 5rem;
+  margin-bottom: 0.2rem;
+}
+
+#title h1 {
+  font-family: 'Bungee Shade', cursive;
+  text-align: center;
+  font-size: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2.4rem;
+}
+
+#posts {
+  background-color: whitesmoke;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding-bottom: 2rem;
+  height: 100vh;
+}
+
+.post {
+  width: 60rem;
+  margin: auto;
+  padding: 4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+}
+
+.postheader {
+  display: flex;
+}
+
+.date {
+  border: 1px solid black;
+  padding: 1rem 1.4rem;
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-family: 'Concert One', cursive;
+  box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.title {
+  font-family: 'Concert One', cursive;
+  font-size: 3rem;
+  margin-left: 2rem;
+}
+
+.author {
+  margin-left: 2rem;
+  margin-top: 0.2rem;
+}
+
+.post-txt {
+  padding-left: 6.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.tags {
+  margin-left: 6.3rem;
+}
