@@ -1,3 +1,54 @@
 let formPost = document.getElementById('form-post')
 
-let ButtonCreate = document.getElementById('create');
+formPost.addEventListener('submit', createPost);
+
+async function createPost(e){
+    e.preventDefault();
+
+    let formData = new FormData(this)
+
+    //console.log(formatFormData(formData));
+    // console.log(document.getElementById('content').value)
+    // console.log(document.getElementById('tag').value)
+    // console.log(formData.get('content'))
+    // console.log(formData.get('tags'))
+
+let objectPost = {
+    title: formData.get('title'),
+    author: formData.get('author'),
+    content: formData.get('content'),
+    tags: formData.get('tags')
+}
+
+console.log(objectPost)
+
+
+try{
+
+await fetch('http://localhost:3000/posts', { 
+
+method: 'POST',
+headers: {
+    'Content-Type': 'application/json'
+},
+body: JSON.stringify(objectPost)
+
+});
+window.location.replace('index.html')
+
+}catch(message){
+    throw new Error(message);
+
+}
+
+
+}
+
+function formatFormData(formData) {
+    let obj = {};
+    for (let key of formData.keys()) {
+        obj[key] = formData.get(key);
+    }
+
+    return obj;
+}
