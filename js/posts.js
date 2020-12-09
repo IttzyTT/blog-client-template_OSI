@@ -14,17 +14,18 @@ async function loadPosts() {
       const monthName = postDate.toLocaleString('default', { month: 'short' });
       console.log(monthName);
       postHTML += '<div class="post">';
-      postHTML += '<div class="postheader">';
+      postHTML += '<div class="postleft">';
       postHTML += `<p class="date">${
         monthName + '<br>' + postDate.getDate()
       }</p>`;
-      postHTML += '<div class="posttitle">';
+      postHTML += '</div>';
+      postHTML += '<div class="postright">';
       postHTML += `<h3 class="title">${post.title}</h3>`;
       postHTML += `<i class="author">${'A post by' + ' ' + post.author}</i>`;
-      postHTML += '</div>';
-      postHTML += '</div>';
+
       postHTML += `<p class="post-txt">${post.content}</p>`;
       postHTML += `<b class="tags">${'Tags:' + ' ' + post.tags.join(', ')}</b>`;
+      postHTML += '</div>';
       postHTML += '</div>';
     }
     postContainer.innerHTML = postHTML;
