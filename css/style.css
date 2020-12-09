@@ -48,7 +48,8 @@ body {
 }
 
 .post {
-  margin: auto 10rem;
+  margin: auto;
+  width: 800px;
   padding: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.333);
   display: grid;
@@ -95,7 +96,6 @@ body {
   font-family: 'Concert One', cursive;
   font-size: 3rem;
   font-weight: 200;
-  margin-bottom: 1rem;
 }
 
 .author {
@@ -109,6 +109,10 @@ body {
 }
 
 /* POST-SITE STYLING */
+#post-main {
+  width: 800px;
+  margin: auto;
+}
 .post-singel {
   padding: 100px;
   display: flex;
@@ -127,7 +131,7 @@ body {
   text-decoration: none;
   color: whitesmoke;
   cursor: pointer;
-  margin-left: 800px;
+  margin-left: 650px;
   font-size: 1.5rem;
   background-color: rgb(1, 1, 1);
   padding: 20px;
