@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <header>
     <h3>Update Post</h3>
+  </header>
+  
 
     <div class="container">
       <form id="form-update-post">
@@ -20,7 +23,13 @@
         <textarea id="content" name="content" style="height:100px"></textarea>
     
         <label for="tags">Tags</label>
-        <textarea id="tag" name="tags" style="height:100px"></textarea>
+        <select name="tags" id="tag" multiple>
+          <option value="travel">Travel</option>
+          <option value="food">Food</option>
+          <option value="chopping">Chopping</option>
+          <option value="economy">Economy</option>
+          <option value="pay">Pay</option>
+        </select>
     
         <button type="submit" id="update-post-btn">Update</button><br>
 
