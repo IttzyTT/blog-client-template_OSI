@@ -47,9 +47,7 @@ body {
 }
 
 .post {
-  display: flex;
-  width: 60rem;
-  margin: auto;
+  margin: auto 10rem;
   padding: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.333);
   display: grid;
@@ -61,12 +59,26 @@ body {
     '.              txt-container'
     '.              tags-container';
 }
-.postleft {
-  margin-right: 25px;
+
+.date-container {
+  grid-area: date-container;
+}
+.heads-container {
+  grid-area: heads-container;
+  align-self: end;
+}
+.txt-container {
+  grid-area: txt-container;
+}
+.tags-container {
+  grid-area: tags-container;
 }
 
 .date {
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
   text-transform: uppercase;
   border: 1px solid black;
   height: 3.7em;
@@ -86,13 +98,15 @@ body {
 }
 
 .author {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .post-txt {
+  font-size: 1.2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
 
 /* POST-SITE STYLING */
 .post-singel {
