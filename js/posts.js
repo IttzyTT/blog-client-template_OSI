@@ -10,6 +10,7 @@ async function loadPosts() {
     let postHTML = '';
     for (let post of postsData.reverse()) {
       let postDate = new Date(post.date);
+
       const monthName = postDate.toLocaleString('default', { month: 'short' });
       console.log(monthName);
       postHTML += `<div class="post">`;
@@ -24,8 +25,9 @@ async function loadPosts() {
       postHTML += `<i class="author">A post by ${post.author}</i>`;
       postHTML += `</div>`;
       postHTML += `<div class="txt-container">`;
-      postHTML += `<p class="post-txt">${post.content}</p>`;
-      postHTML += `<a href="post.html?id=${post._id}" id="${post._id}"><button type="button">Read more</button></a>`;
+      postHTML += `<p class="post-txt">
+      ${post.content.substring(0, 100)}...
+      <a href="post.html?id=${post._id}">read more</a></p>`;
       postHTML += `</div>`;
       postHTML += `<div class="tags-container">`;
       postHTML += `<b class="tags">Tags: ${post.tags.join(', ')}</b>`;
