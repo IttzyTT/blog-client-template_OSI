@@ -42,28 +42,46 @@ body {
   margin-right: 5rem;
   padding-bottom: 2rem;
   height: 90vh;
-  overflow-x: hidden;
   overflow-y: scroll;
 }
 
 .post {
-  width: 60rem;
   margin: auto;
   padding: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: auto;
+  column-gap: 3em;
+  grid-template-areas: 
+  "date-container heads-container"
+  ".              txt-container"
+  ".              tags-container";
 }
 
-.postheader {
-  display: flex;
+.date-container {
+  grid-area: date-container;
+}
+.heads-container {
+  grid-area: heads-container;
+  align-self: end;
+}
+.txt-container {
+  grid-area: txt-container;
+}
+.tags-container {
+  grid-area: tags-container;
 }
 
 .date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.8rem;
   text-transform: uppercase;
   border: 1px solid black;
-  height: 80px;
-  width: 80px;
-  padding: 1rem 1.4rem;
+  height: 3.7em;
+  width: 3.7em;
   text-align: center;
   background-color: black;
   color: white;
@@ -75,23 +93,16 @@ body {
   font-family: 'Concert One', cursive;
   font-size: 3.5rem;
   font-weight: 200;
-  margin-left: 2rem;
   margin-bottom: 1rem;
 }
 
 .author {
-  margin-left: 2rem;
   font-size: 1.5rem;
 }
 
 .post-txt {
   font-size: 1.2rem;
-  padding-left: 8.5rem;
   margin-top: 1.2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
-}
-
-.tags {
-  margin-left: 8.5rem;
 }
