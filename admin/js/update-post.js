@@ -14,7 +14,8 @@ async function dynamicalContent() {
         document.getElementById("title").value = data.title;
         document.getElementById("author").value = data.author;
         document.getElementById("content").value = data.content;
-        document.getElementById("tag").value = data.tag;
+        preselectTags(data);
+        
 
     } catch (error) {
         throw new Error(error);
@@ -49,4 +50,15 @@ async function submitChanges(punId) {
             throw new Error(error);
         }
     })
+}
+
+async function preselectTags(data) {
+    let htmlTags = document.getElementById("tags");
+        for (let i = 0; i < htmlTags.options.length; i++) {
+            for (let tag of data.tags) {
+                if (htmlTags.options[i].value === tag) {
+                    htmlTags.options[i].selected = true;
+                }
+            }
+        }
 }
