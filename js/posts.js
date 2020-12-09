@@ -7,9 +7,9 @@ async function loadPosts() {
     let postsResponse = await fetch('http://localhost:3000/posts');
     let postsData = await postsResponse.json();
     console.log(postsData);
-
     let postHTML = '';
     for (let post of postsData.reverse()) {
+      console.log('tags: ' + post.tags);
       let postDate = new Date(post.date);
       const monthName = postDate.toLocaleString('default', { month: 'short' });
       console.log(monthName);
