@@ -6,9 +6,9 @@ async function dynamicalContent() {
 
     //  Fill in the blanks:
     let urlParams = new URLSearchParams(window.location.search);
-    let punId = urlParams.get("id");
+    let postId = urlParams.get("id");
     try {
-        let response = await fetch(`http://localhost:3000/posts/${punId}`);
+        let response = await fetch(`http://localhost:3000/posts/${postId}`);
         let data = await response.json();
 
         document.getElementById("title").value = data.title;
@@ -22,10 +22,10 @@ async function dynamicalContent() {
     }
 
     //  Submit the changes
-    submitChanges(punId);
+    submitChanges(postId);
 }
 
-async function submitChanges(punId) {
+async function submitChanges(postId) {
     let updateForm = document.getElementById("form-update-post");
     updateForm.addEventListener("submit", async function(e) {
         e.preventDefault();
@@ -38,7 +38,7 @@ async function submitChanges(punId) {
             tags: formData.getAll('tags', 'value')
         }
         try {
-            await fetch(`http://localhost:3000/posts/${punId}`, {
+            await fetch(`http://localhost:3000/posts/${postId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
