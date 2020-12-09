@@ -19,7 +19,6 @@ header a {
   margin-right: 4rem;
 }
 
-
 body {
   background-color: rgb(40, 39, 39);
   font-size: 1rem;
@@ -109,7 +108,6 @@ body {
   margin-top: 2rem;
 }
 
-
 /* POST-SITE STYLING */
 .post-singel {
   padding: 100px;
@@ -118,6 +116,10 @@ body {
   width: 800px;
   margin: auto;
   border-radius: 5px;
+}
+
+.postleft {
+  margin-right: 25px;
 }
 
 /* Back link */
