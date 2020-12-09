@@ -17,12 +17,10 @@ let objectPost = {
     title: formData.get('title'),
     author: formData.get('author'),
     content: formData.get('content'),
-    tags: formData.get('tags')
+    tags: formData.getAll('tags', 'value') //get all values selected from <form select>
 }
 
-console.log(objectPost)
-
-
+//console.log(objectPost)
 try{
 
 await fetch('http://localhost:3000/posts', { 
@@ -44,11 +42,5 @@ window.location.replace('index.html')
 
 }
 
-function formatFormData(formData) {
-    let obj = {};
-    for (let key of formData.keys()) {
-        obj[key] = formData.get(key);
-    }
 
-    return obj;
-}
+

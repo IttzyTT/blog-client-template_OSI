@@ -14,6 +14,7 @@ async function dynamicalContent() {
         document.getElementById("title").value = data.title;
         document.getElementById("author").value = data.author;
         document.getElementById("content").value = data.content;
+        document.getElementById("tag").value = data.tag;
 
     } catch (error) {
         throw new Error(error);
@@ -33,6 +34,7 @@ async function submitChanges(punId) {
             title: formData.get("title"),
             author: formData.get("author"),
             content: formData.get("content"),
+            tags: formData.getAll('tags', 'value')
         }
         try {
             await fetch(`http://localhost:3000/posts/${punId}`, {
