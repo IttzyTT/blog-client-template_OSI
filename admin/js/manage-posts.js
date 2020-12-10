@@ -15,6 +15,7 @@ async function loadPosts() {
             `<tr>
                 <td>${post.title}</td>
                 <td>${post.author}</td>
+                <td>${post.tags.join(", ")}</td>
                 <td>${postDate.toLocaleDateString()} ${postDate.toLocaleTimeString()}</td>
                 <td>
                     <a href="./update-post.html?id=${post._id}">
