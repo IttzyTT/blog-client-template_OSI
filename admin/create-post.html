@@ -1,45 +1,53 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <header>
-    <h3>New Post</h3>
-  </header>
- 
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h3>New Post</h3>
+    </header>
 
     <div class="container">
       <form id="form-post">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="Title..">
-    
+        <input type="text" id="title" name="title" placeholder="Title.." />
+
         <label for="author">Author</label>
-        <input type="text" id="author" name="author" placeholder="Your name..">
-    
-        <label for="content">Content</label>
-        <textarea name="content" id="content" placeholder="Write something.." style="height:100px"></textarea>
-    
-      <label for="tags">Tags</label>
-          <select name="tags" id="tag" multiple required>
-            <option value="travel">Travel</option>
-            <option value="food">Food</option>
-            <option value="chopping">Chopping</option>
-            <option value="economy">Economy</option>
-            <option value="pay">Pay</option>
-          </select>
-    
-        <button id="create">Create</button><br>
+        <input
+          type="text"
+          id="author"
+          name="author"
+          placeholder="Your name.."
+        />
+
+        <label for="content"
+          >Content <a id="lorem-txt">Generate 150 lorem characters</a></label
+        >
+        <textarea
+          name="content"
+          id="content"
+          placeholder="Write something.."
+          style="height: 100px"
+        ></textarea>
+
+        <label for="tags">Tags</label>
+        <select name="tags" id="tag" multiple required>
+          <option value="travel">Travel</option>
+          <option value="food">Food</option>
+          <option value="chopping">Chopping</option>
+          <option value="economy">Economy</option>
+          <option value="pay">Pay</option>
+        </select>
+
+        <button id="create">Create</button><br />
 
         <a href="index.html">&#x2190; back</a>
       </form>
     </div>
 
-
     <script src="js/create-post.js"></script>
-
-
-</body>
+  </body>
 </html>
