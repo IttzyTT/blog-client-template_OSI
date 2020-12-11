@@ -1,6 +1,7 @@
 window.onload = function() {
     dynamicalContent();
 }
+let selectedTagsArray = [];
 
 async function dynamicalContent() {
 
@@ -15,7 +16,7 @@ async function dynamicalContent() {
         document.getElementById("author").value = data.author;
         document.getElementById("content").value = data.content;
         preselectTags(data);
-        
+        newFormSelectBehavior();
 
     } catch (error) {
         throw new Error(error);
@@ -58,7 +59,26 @@ async function preselectTags(data) {
             for (let tag of data.tags) {
                 if (htmlTags.options[i].value === tag) {
                     htmlTags.options[i].selected = true;
+                    selectedTagsArray.push(htmlTags.options[i].index);
                 }
             }
         }
+}
+
+async function newFormSelectBehavior() {
+    let tagsSelectElement = document.getElementById("tags");
+    
+    for (let option of tagsSelectElement.children) {
+        option.addEventListener("click", function() {
+            if (selectedTagsArray.includes(this.index)) {
+                this.selected = false;
+                selectedTagsArray = selectedTagsArray.filter((value) => {  return value !== this.index  })
+            } else {
+                selectedTagsArray.push(option.index);
+            }
+            for (let index of selectedTagsArray) {
+                tagsSelectElement.options[index].selected = true;
+            }
+        });
+    }
 }

@@ -9,6 +9,27 @@ loremBtn.addEventListener('click', function () {
   loremtContainer.innerText = loremHTML;
 });
 
+
+(function newFormSelectBehavior() {
+  let tagsSelectElement = document.getElementById("tags");
+  let selectedTagsArray = [];
+
+  for (let option of tagsSelectElement.children) {
+      option.addEventListener("click", function() {
+          if (selectedTagsArray.includes(this.index)) {
+              this.selected = false;
+              selectedTagsArray = selectedTagsArray.filter((value) => {  return value !== this.index  })
+          } else {
+              selectedTagsArray.push(option.index);
+          }
+          for (let index of selectedTagsArray) {
+              tagsSelectElement.options[index].selected = true;
+          }
+      });
+  }
+}());
+
+
 let formPost = document.getElementById('form-post');
 
 formPost.addEventListener('submit', createPost);
