@@ -9,7 +9,7 @@ async function loadPosts() {
         
         let dynTableContent = "";
 
-        for (let post of postsData) {
+        for (let post of postsData.reverse()) {
             let postDate = new Date(post.date);
             dynTableContent +=
             `<tr>

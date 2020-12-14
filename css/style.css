@@ -69,6 +69,8 @@ body {
     'date-container heads-container'
     '.              txt-container'
     '.              tags-container';
+  -webkit-box-shadow: 2px 1px 5px 3px rgba(0, 0, 0, 0.19);
+  box-shadow: 2px 1px 5px 3px rgba(0, 0, 0, 0.19);
 }
 
 .date-container {
@@ -145,4 +147,8 @@ body {
   background-color: rgb(1, 1, 1);
   padding: 20px;
   border-radius: 5px;
+}
+
+.back-btn a:hover {
+  color: aqua;
 }
