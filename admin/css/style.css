@@ -35,7 +35,8 @@ select {
 
 button[id='create'],
 .update-post-btn, 
-.delete-btn {
+.delete-btn,
+#delete-are-you-sure button {
   background-color: rgb(55, 211, 211);
   color: white;
   padding: 12px 20px;
@@ -46,7 +47,8 @@ button[id='create'],
 
 button[id='create']:hover,
 .update-post-btn:hover,
-.delete-btn:hover {
+.delete-btn:hover,
+#delete-are-you-sure button:hover {
   background-color: #63bfe6;
 }
 
@@ -127,4 +129,45 @@ a {
 }
 .admin-table-time {
   margin-left: 16px;
+}
+#delete-are-you-sure {
+  display: none;
+  position: fixed;
+  z-index: 11111;
+  left: 50%;
+  top: 20%;
+  box-shadow: 0px 20px 30px rgb(0, 0, 0);
+  transform: translateX(-50%);
+  background-color: whitesmoke;
+  border: 2px outset rgb(129, 129, 129);
+  border-radius: 5px;
+  text-align: center;
+  width: 24rem;
+  padding: 2rem;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+#delete-are-you-sure span {
+  display: flex;
+  justify-content: space-between;
+}
+@keyframes popup-appear {
+  from  { box-shadow: 0px 20px 50px rgb(0, 0, 0); 
+          transform: translateX(-50%);
+          filter: opacity(0);
+        }
+  to    { box-shadow: 0px 20px 30px rgb(0, 0, 0); 
+          transform: translateX(-50%);
+          filter: opacity(100);
+        }
+}
+@keyframes popup-disappear {
+  from  { box-shadow: 0px 20px 30px rgb(0, 0, 0); 
+          transform: translateX(-50%);
+          filter: opacity(100);
+        }
+  to    { box-shadow: 0px 20px 50px rgb(0, 0, 0); 
+          transform: translateX(-50%);
+          filter: opacity(0);
+        }
 }
