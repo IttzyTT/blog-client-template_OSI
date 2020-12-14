@@ -1,4 +1,5 @@
 let table = document.getElementById("table-manage-posts");
+let body = document.getElementsByTagName("body")[0];
 
 loadPosts();
 
@@ -12,7 +13,7 @@ async function loadPosts() {
         for (let post of postsData.reverse()) {
             let postDate = new Date(post.date);
             dynTableContent +=
-            `<tr class="align-middle">
+            `<tr class="align-middle" id="table-row-${post._id}">
                 <td>${post.title}</td>
                 <td>${post.author}</td>
                 <td>${post.tags.join(", ")}</td>
@@ -39,18 +40,52 @@ async function loadPosts() {
 }
 
 async function deletePostBtn() {
+    let deletePopup = document.getElementById("delete-are-you-sure");
+
     try {
         let deleteBtns = document.querySelectorAll(".delete-btn");
+        let currentId = "";
     
         for (let btn of deleteBtns) {
-            btn.addEventListener("click", async function() {
-                await fetch(`http://localhost:3000/posts/${this.dataset.postId}`, {
-                    method: "DELETE"
-                });
-                this.parentNode.parentNode.remove();
+            btn.addEventListener("click", function() {
+                currentId = this.dataset.postId;
+                deletePopup.style.animationName = "popup-appear";
+                deletePopup.style.display = "block";
             })
         }
+        let confirmDeleteBtn = document.getElementById("admin-confirm-delete-btn");
+        let cancelDeleteBtn = document.getElementById("admin-cancel-delete-btn");
+        
+        confirmDeleteBtn.addEventListener("click", async function() {
+            await fetch(`http://localhost:3000/posts/${currentId}`, {
+                method: "DELETE"
+            });
+            let currentTableRow = document.getElementById(`table-row-${currentId}`);
+            currentTableRow.remove();
+            fadeOutEffect();
+        })
+
+        cancelDeleteBtn.addEventListener("click", async function() {
+            fadeOutEffect();
+        });
+        
     } catch (error) {
         throw new Error(error);
+    }
+
+    async function fadeOutEffect() {
+        deletePopup.style.animationName = "popup-disappear";
+        let animationDuration = getComputedStyle(deletePopup).animationDuration;
+            animationDuration = parseFloat(animationDuration);
+            animationDuration *= 1000;
+
+        await wait(animationDuration);
+        deletePopup.style.display = "none";
+    }
+    
+    async function wait(ms) {
+        return new Promise(resolve => {
+          setTimeout(resolve, ms);
+        });
     }
 }
