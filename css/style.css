@@ -4,19 +4,28 @@
   box-sizing: border-box;
 }
 header {
-  background-color: black;
   display: flex;
   justify-content: flex-end;
-}
-header a {
-  text-decoration: none;
-  color: aqua;
-  font-family: sans-serif;
-  display: flex;
   padding: 1rem;
+}
+#admin-tool a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  border: 1px solid black;
+  height: 3.7em;
+  width: 3.7em;
+  text-align: center;
   background-color: black;
-  cursor: pointer;
-  margin-right: 4rem;
+  color: white;
+  text-decoration: none;
+  font-family: 'Concert One', cursive;
+  box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+#admin-tool a:hover{
+  background-color: #7a7d7d;
 }
 
 body {
