@@ -12,14 +12,19 @@ async function loadPosts() {
         for (let post of postsData.reverse()) {
             let postDate = new Date(post.date);
             dynTableContent +=
-            `<tr>
+            `<tr class="align-middle">
                 <td>${post.title}</td>
                 <td>${post.author}</td>
                 <td>${post.tags.join(", ")}</td>
-                <td>${postDate.toLocaleDateString()} ${postDate.toLocaleTimeString()}</td>
+                <td>
+                    <div class="admin-table-dates">
+                        <span>${postDate.toLocaleDateString([], { day: "numeric", month: "short", year: "numeric" })}</span>
+                        <span><i>${postDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</i></span>
+                    </div>
+                </td>
                 <td>
                     <a href="./update-post.html?id=${post._id}">
-                        <button type="button">Update post</button>
+                        <button type="button" class="update-post-btn">Update post</button>
                     </a>
                     <button type="button" class="delete-btn" data-post-id="${post._id}">Delete post</button>
                 </td>

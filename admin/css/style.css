@@ -34,7 +34,8 @@ select {
 }
 
 button[id='create'],
-#update-post-btn {
+.update-post-btn, 
+.delete-btn {
   background-color: rgb(55, 211, 211);
   color: white;
   padding: 12px 20px;
@@ -44,7 +45,8 @@ button[id='create'],
 }
 
 button[id='create']:hover,
-#update-post-btn:hover {
+.update-post-btn:hover,
+.delete-btn:hover {
   background-color: #63bfe6;
 }
 
@@ -79,7 +81,7 @@ td {
   padding: 0.4em;
 }
 
-table,
+/* table,
 thead,
 tr,
 td {
@@ -87,7 +89,7 @@ td {
 }
 table {
   border-collapse: collapse;
-}
+} */
 a {
   text-decoration: none;
 }
@@ -116,4 +118,9 @@ a {
   margin-left: 10px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.admin-table-dates {
+  display: flex;
+  justify-content: space-between;
 }
