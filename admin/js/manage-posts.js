@@ -19,7 +19,7 @@ async function loadPosts() {
                 <td>
                     <div class="admin-table-dates">
                         <span>${postDate.toLocaleDateString([], { day: "numeric", month: "short", year: "numeric" })}</span>
-                        <span><i>${postDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</i></span>
+                        <span class="admin-table-time"><i>${postDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</i></span>
                     </div>
                 </td>
                 <td>

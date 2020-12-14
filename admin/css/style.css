@@ -125,3 +125,6 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.admin-table-time {
+  margin-left: 16px;
+}
