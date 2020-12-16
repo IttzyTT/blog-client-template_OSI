@@ -4,11 +4,11 @@ let allTags = [];
 loadPosts();
 
 async function loadPosts() {
-    try {
-        let postsResponse = await fetch("http://localhost:3000/posts");
-        let postsData = await postsResponse.json();
-        
-        let dynTableContent = "";
+  try {
+    let postsResponse = await fetch('http://localhost:3000/posts');
+    let postsData = await postsResponse.json();
+
+    let dynTableContent = '';
 
         for (let post of postsData.reverse()) {
             allTags.push(...post.tags);
@@ -18,18 +18,25 @@ async function loadPosts() {
             `<tr class="align-middle" id="table-row-${post._id}">
                 <td>${post.title}</td>
                 <td>${post.author}</td>
-                <td>${post.tags.join(", ")}</td>
+                <td>${post.tags.join(', ')}</td>
                 <td>
                     <div class="admin-table-dates">
-                        <span>${postDate.toLocaleDateString([], { day: "numeric", month: "short", year: "numeric" })}</span>
-                        <span class="admin-table-time"><i>${postDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</i></span>
+                        <span>${postDate.toLocaleDateString([], {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}</span>
+                        <span class="admin-table-time"><i>${postDate.toLocaleTimeString(
+                          [],
+                          { hour: '2-digit', minute: '2-digit' }
+                        )}</i></span>
                     </div>
                 </td>
                 <td>
                     <a href="./update-post.html?id=${post._id}">
-                        <button type="button" class="update-post-btn btn-bright-template">Update post</button>
+                        <button type="button" class="update-post-btn btn-bright-template">Update post <i class="fas fa-pencil-alt"></i></button>
                     </a>
-                    <button type="button" class="delete-btn btn-bright-template" data-post-id="${post._id}">Delete post</button>
+                    <button type="button" class="delete-btn btn-bright-template" data-post-id="${post._id}">Delete post <i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>`;
         }
@@ -43,52 +50,51 @@ async function loadPosts() {
 }
 
 async function deletePostBtn() {
-    let deletePopup = document.getElementById("delete-are-you-sure");
+    let deletePopup = document.getElementById('delete-are-you-sure');
 
     try {
-        let deleteBtns = document.querySelectorAll(".delete-btn");
-        let currentId = "";
-    
+        let deleteBtns = document.querySelectorAll('.delete-btn');
+        let currentId = '';
+
         for (let btn of deleteBtns) {
-            btn.addEventListener("click", function() {
+            btn.addEventListener('click', function () {
                 currentId = this.dataset.postId;
-                deletePopup.style.animationName = "popup-appear";
-                deletePopup.style.display = "block";
-            })
+                deletePopup.style.animationName = 'popup-appear';
+                deletePopup.style.display = 'block';
+            });
         }
-        let confirmDeleteBtn = document.getElementById("admin-confirm-delete-btn");
-        let cancelDeleteBtn = document.getElementById("admin-cancel-delete-btn");
-        
-        confirmDeleteBtn.addEventListener("click", async function() {
+        let confirmDeleteBtn = document.getElementById('admin-confirm-delete-btn');
+        let cancelDeleteBtn = document.getElementById('admin-cancel-delete-btn');
+
+        confirmDeleteBtn.addEventListener('click', async function () {
             await fetch(`http://localhost:3000/posts/${currentId}`, {
-                method: "DELETE"
+                method: 'DELETE',
             });
             let currentTableRow = document.getElementById(`table-row-${currentId}`);
             currentTableRow.remove();
             fadeOutEffect();
-        })
+        });
 
-        cancelDeleteBtn.addEventListener("click", async function() {
+        cancelDeleteBtn.addEventListener('click', async function () {
             fadeOutEffect();
         });
-        
     } catch (error) {
         throw new Error(error);
     }
 
     async function fadeOutEffect() {
-        deletePopup.style.animationName = "popup-disappear";
+        deletePopup.style.animationName = 'popup-disappear';
         let animationDuration = getComputedStyle(deletePopup).animationDuration;
-            animationDuration = parseFloat(animationDuration);
-            animationDuration *= 1000;
+        animationDuration = parseFloat(animationDuration);
+        animationDuration *= 1000;
 
         await wait(animationDuration);
-        deletePopup.style.display = "none";
+        deletePopup.style.display = 'none';
     }
-    
+
     async function wait(ms) {
-        return new Promise(resolve => {
-          setTimeout(resolve, ms);
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
         });
     }
 }
@@ -96,7 +102,8 @@ async function deletePostBtn() {
 async function tagTrends() {
     console.log(allTags);
     const trendsBtn = document.getElementById("trends-btn");
-    const trendsContainer = document.getElementById("tag-trends");
+    const trendContainer = document.getElementById("trend-container");
+    const trendsDynContent = document.getElementById("tag-trends");
     let uniqueTags = new Set(allTags);
     let tagStats = {};
     let tagsTotal = 0;
@@ -137,10 +144,10 @@ async function tagTrends() {
             `;
     }
     trendHTML += `</div>`;
-    trendsContainer.innerHTML = trendHTML;
+    trendsDynContent.insertAdjacentHTML("afterbegin", trendHTML);
 
     trendsBtn.addEventListener("click", function() {
-        $(trendsContainer).slideToggle();
+        $(trendsDynContent).slideToggle();
         this.innerText = trendsBtnInnerText(this);
     });
     function trendsBtnInnerText(key) {
@@ -153,4 +160,14 @@ async function tagTrends() {
                 return;
         }
     }
+    trendContainer.style.width = contentWidth() + "px";
+}
+
+function contentWidth() {
+    const content = document.querySelectorAll(".center-block-element")[0];
+    const contentStyling = getComputedStyle(content);
+    const totalWidth = parseInt(contentStyling.getPropertyValue("width"));
+    const paddingLeft = parseInt(contentStyling.getPropertyValue("padding-left"));
+    const netWidth = totalWidth - (paddingLeft * 2);
+    return netWidth;
 }

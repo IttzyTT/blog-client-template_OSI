@@ -4,54 +4,69 @@
   box-sizing: border-box;
 }
 header {
-  background-color: black;
+  background-color: rgb(231, 213, 148);
   display: flex;
   justify-content: flex-end;
+  height: 50px;
 }
 header a {
   text-decoration: none;
-  color: aqua;
+  color: rgb(254, 255, 255);
   font-family: sans-serif;
-  display: flex;
-  padding: 1rem;
-  background-color: black;
+  font-size: 1.3rem;
+  padding: 0.7rem;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(203, 150, 75);
   cursor: pointer;
-  margin-right: 4rem;
+  margin-right: 60px;
+  margin-top: 10px;
+}
+header a:hover {
+  background-color: rgb(201, 136, 46);
 }
 
 body {
-  background-color: rgb(40, 39, 39);
+  background-color: rgb(231, 213, 148);
   font-size: 1rem;
 }
 
 #title {
-  background-color: whitesmoke;
   margin: 0rem 5rem 0rem 5rem;
-  margin-bottom: 0.2rem;
 }
 
-#title h1 {
+h1 {
   font-family: 'Bungee Shade', cursive;
+  color: rgb(34, 32, 29);
   text-align: center;
-  font-size: 5rem;
+  font-size: 6rem;
+  margin-bottom: 1px;
+  margin-top: 0;
   padding-top: 2rem;
   padding-bottom: 2.4rem;
 }
 
 #posts {
-  background-color: whitesmoke;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  background: rgb(231, 213, 148);
+  background: linear-gradient(
+    90deg,
+    rgba(231, 213, 148, 1) 0%,
+    rgba(245, 245, 245, 1) 50%,
+    rgba(231, 213, 148, 1) 100%
+  );
+
   padding-bottom: 2rem;
-  height: 90vh;
+  height: 86vh;
   overflow-y: scroll;
 }
 
 .post {
+  background-color: #f5f5f5;
   margin: auto;
   width: 800px;
   padding: 4rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+  margin-bottom: 10px;
+  border-radius: 2px;
   display: grid;
   grid-template-columns: min-content auto;
   grid-template-rows: auto;
@@ -132,14 +147,16 @@ body {
 .back-btn a {
   text-decoration: none;
   color: whitesmoke;
+  font-family: sans-serif;
   cursor: pointer;
   margin-left: 650px;
-  font-size: 1.5rem;
-  background-color: rgb(1, 1, 1);
-  padding: 20px;
+  font-size: 1.2rem;
+  background-color: rgb(20, 20, 21);
+  padding: 10px;
   border-radius: 5px;
 }
 
 .back-btn a:hover {
-  color: aqua;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
 }
