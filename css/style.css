@@ -32,14 +32,14 @@ body {
 }
 
 #title {
-  background-color: whitesmoke;
   margin: 0rem 5rem 0rem 5rem;
 }
 
 h1 {
   font-family: 'Bungee Shade', cursive;
+  color: rgb(34, 32, 29);
   text-align: center;
-  font-size: 5rem;
+  font-size: 6rem;
   margin-bottom: 1px;
   margin-top: 0;
   padding-top: 2rem;
@@ -47,19 +47,25 @@ h1 {
 }
 
 #posts {
-  background-color: whitesmoke;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  background: rgb(231, 213, 148);
+  background: linear-gradient(
+    90deg,
+    rgba(231, 213, 148, 1) 0%,
+    rgba(245, 245, 245, 1) 50%,
+    rgba(231, 213, 148, 1) 100%
+  );
+
   padding-bottom: 2rem;
-  height: 90vh;
+  height: 86vh;
   overflow-y: scroll;
 }
 
 .post {
+  background-color: #f5f5f5;
   margin: auto;
   width: 800px;
   padding: 4rem;
-  margin-top: 10px;
+  margin-bottom: 10px;
   border-radius: 2px;
   display: grid;
   grid-template-columns: min-content auto;
