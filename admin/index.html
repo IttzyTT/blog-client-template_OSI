@@ -25,6 +25,15 @@
   </head>
   <body>
     <div class="center-block-element">
+      <div id="trend-container">
+        <section id="tag-trends">
+          <!-- dynamic content -->
+          <div id="trend-spacer"></div>
+        </section>
+        <div id="trend-btn-container">
+          <button type="button" class="btn-bright-template" id="trends-btn">Show Trends</button>
+        </div>
+      </div>
       <nav id="admin-top-nav">
         <a id="create-post" href="./create-post.html"
           >New Post <i class="fas fa-plus-square"></i
@@ -34,7 +43,6 @@
         >
       </nav>
       <h1>Handle blog posts</h1>
-
       <section>
         <table id="table-manage-posts" class="table table-hover">
           <thead>
@@ -47,15 +55,15 @@
         </table>
       </section>
     </div>
+
     <div id="delete-are-you-sure">
       <p>Are you sure?</p>
       <span>
-        <button type="button" id="admin-confirm-delete-btn">
-          Yes, delete post
-        </button>
-        <button type="button" id="admin-cancel-delete-btn">Cancel</button>
+          <button type="button" class="btn-bright-template" id="admin-confirm-delete-btn">Yes, delete post</button>
+          <button type="button" class="btn-bright-template" id="admin-cancel-delete-btn">Cancel</button>
       </span>
-    </div>
+    </div> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/manage-posts.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

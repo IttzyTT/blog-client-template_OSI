@@ -1,5 +1,5 @@
-let table = document.getElementById('table-manage-posts');
-let body = document.getElementsByTagName('body')[0];
+let table = document.getElementById("table-manage-posts");
+let allTags = [];
 
 loadPosts();
 
@@ -10,9 +10,12 @@ async function loadPosts() {
 
     let dynTableContent = '';
 
-    for (let post of postsData.reverse()) {
-      let postDate = new Date(post.date);
-      dynTableContent += `<tr class="align-middle" id="table-row-${post._id}">
+        for (let post of postsData.reverse()) {
+            allTags.push(...post.tags);
+
+            let postDate = new Date(post.date);
+            dynTableContent +=
+            `<tr class="align-middle" id="table-row-${post._id}">
                 <td>${post.title}</td>
                 <td>${post.author}</td>
                 <td>${post.tags.join(', ')}</td>
@@ -31,67 +34,140 @@ async function loadPosts() {
                 </td>
                 <td>
                     <a href="./update-post.html?id=${post._id}">
-                        <button type="button" class="update-post-btn">Update post <i class="fas fa-pencil-alt"></i></button>
+                        <button type="button" class="update-post-btn btn-bright-template">Update post <i class="fas fa-pencil-alt"></i></button>
                     </a>
-                    <button type="button" class="delete-btn" data-post-id="${
-                      post._id
-                    }">Delete post <i class="fas fa-trash-alt"></i></button>
+                    <button type="button" class="delete-btn btn-bright-template" data-post-id="${post._id}">Delete post <i class="fas fa-trash-alt"></i></button>
                 </td>
             </tr>`;
+        }
+        table.innerHTML += dynTableContent;
+        deletePostBtn(); 
+        tagTrends();
+
+    } catch (error) {
+        throw new Error(error);
     }
-    table.innerHTML += dynTableContent;
-    deletePostBtn();
-  } catch (error) {
-    throw new Error(error);
-  }
 }
 
 async function deletePostBtn() {
-  let deletePopup = document.getElementById('delete-are-you-sure');
+    let deletePopup = document.getElementById('delete-are-you-sure');
 
-  try {
-    let deleteBtns = document.querySelectorAll('.delete-btn');
-    let currentId = '';
+    try {
+        let deleteBtns = document.querySelectorAll('.delete-btn');
+        let currentId = '';
 
-    for (let btn of deleteBtns) {
-      btn.addEventListener('click', function () {
-        currentId = this.dataset.postId;
-        deletePopup.style.animationName = 'popup-appear';
-        deletePopup.style.display = 'block';
-      });
+        for (let btn of deleteBtns) {
+            btn.addEventListener('click', function () {
+                currentId = this.dataset.postId;
+                deletePopup.style.animationName = 'popup-appear';
+                deletePopup.style.display = 'block';
+            });
+        }
+        let confirmDeleteBtn = document.getElementById('admin-confirm-delete-btn');
+        let cancelDeleteBtn = document.getElementById('admin-cancel-delete-btn');
+
+        confirmDeleteBtn.addEventListener('click', async function () {
+            await fetch(`http://localhost:3000/posts/${currentId}`, {
+                method: 'DELETE',
+            });
+            let currentTableRow = document.getElementById(`table-row-${currentId}`);
+            currentTableRow.remove();
+            fadeOutEffect();
+        });
+
+        cancelDeleteBtn.addEventListener('click', async function () {
+            fadeOutEffect();
+        });
+    } catch (error) {
+        throw new Error(error);
     }
-    let confirmDeleteBtn = document.getElementById('admin-confirm-delete-btn');
-    let cancelDeleteBtn = document.getElementById('admin-cancel-delete-btn');
 
-    confirmDeleteBtn.addEventListener('click', async function () {
-      await fetch(`http://localhost:3000/posts/${currentId}`, {
-        method: 'DELETE',
-      });
-      let currentTableRow = document.getElementById(`table-row-${currentId}`);
-      currentTableRow.remove();
-      fadeOutEffect();
+    async function fadeOutEffect() {
+        deletePopup.style.animationName = 'popup-disappear';
+        let animationDuration = getComputedStyle(deletePopup).animationDuration;
+        animationDuration = parseFloat(animationDuration);
+        animationDuration *= 1000;
+
+        await wait(animationDuration);
+        deletePopup.style.display = 'none';
+    }
+
+    async function wait(ms) {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
+        });
+    }
+}
+
+async function tagTrends() {
+    console.log(allTags);
+    const trendsBtn = document.getElementById("trends-btn");
+    const trendContainer = document.getElementById("trend-container");
+    const trendsDynContent = document.getElementById("tag-trends");
+    let uniqueTags = new Set(allTags);
+    let tagStats = {};
+    let tagsTotal = 0;
+    let highestNumber = 0;
+
+    //  Get the stats
+    for (let tag of uniqueTags) {
+        let tagCounter = allTags.filter(value => value === tag).length;
+        tagStats[tag] = tagCounter;
+        tagsTotal += tagCounter;
+    }
+    console.log(tagsTotal);
+    console.log(tagStats);
+
+    let percentageArray = [];
+    //  tag percentage of total tags
+    for (let prop in tagStats) {
+        tagStats[prop] /= tagsTotal;
+        tagStats[prop] = tagStats[prop] * 100;
+        console.log(prop + " " + tagStats[prop]);
+        percentageArray.push(tagStats[prop]);
+    }
+
+    highestNumber = Math.max(...percentageArray);
+    
+    let trendHTML = `
+                <p><b>Tags</b><i> - what do you write about the most?</i></p>
+                <div id="tag-trends-dyn-container">
+            `;
+    for (let prop in tagStats) {
+        trendHTML += 
+            `
+            <span style="display:inline-block; background-color: whitesmoke; 
+            filter: opacity(calc(${tagStats[prop]}/${highestNumber})); 
+            border: 1px solid black; width: ${tagStats[prop]}%">
+            ${prop}
+            </span>
+            `;
+    }
+    trendHTML += `</div>`;
+    trendsDynContent.insertAdjacentHTML("afterbegin", trendHTML);
+
+    trendsBtn.addEventListener("click", function() {
+        $(trendsDynContent).slideToggle();
+        this.innerText = trendsBtnInnerText(this);
     });
+    function trendsBtnInnerText(key) {
+        switch (key.innerText) {
+            case "Show Trends":
+                return "Close Trends";
+            case "Close Trends":
+                return "Show Trends";
+            default:
+                return;
+        }
+    }
+    trendContainer.style.width = contentWidth() + "px";
+}
 
-    cancelDeleteBtn.addEventListener('click', async function () {
-      fadeOutEffect();
-    });
-  } catch (error) {
-    throw new Error(error);
-  }
-
-  async function fadeOutEffect() {
-    deletePopup.style.animationName = 'popup-disappear';
-    let animationDuration = getComputedStyle(deletePopup).animationDuration;
-    animationDuration = parseFloat(animationDuration);
-    animationDuration *= 1000;
-
-    await wait(animationDuration);
-    deletePopup.style.display = 'none';
-  }
-
-  async function wait(ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
+function contentWidth() {
+    const content = document.querySelectorAll(".center-block-element")[0];
+    const contentStyling = getComputedStyle(content);
+    const totalWidth = parseInt(contentStyling.getPropertyValue("width"));
+    const paddingLeft = parseInt(contentStyling.getPropertyValue("padding-left"));
+    const netWidth = totalWidth - (paddingLeft * 2);
+    return netWidth;
 }
