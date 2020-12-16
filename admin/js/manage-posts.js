@@ -1,5 +1,5 @@
 let table = document.getElementById("table-manage-posts");
-let body = document.getElementsByTagName("body")[0];
+let allTags = [];
 
 loadPosts();
 
@@ -11,6 +11,8 @@ async function loadPosts() {
         let dynTableContent = "";
 
         for (let post of postsData.reverse()) {
+            allTags.push(...post.tags);
+
             let postDate = new Date(post.date);
             dynTableContent +=
             `<tr class="align-middle" id="table-row-${post._id}">
@@ -25,14 +27,15 @@ async function loadPosts() {
                 </td>
                 <td>
                     <a href="./update-post.html?id=${post._id}">
-                        <button type="button" class="update-post-btn">Update post</button>
+                        <button type="button" class="update-post-btn btn-bright-template">Update post</button>
                     </a>
-                    <button type="button" class="delete-btn" data-post-id="${post._id}">Delete post</button>
+                    <button type="button" class="delete-btn btn-bright-template" data-post-id="${post._id}">Delete post</button>
                 </td>
             </tr>`;
         }
         table.innerHTML += dynTableContent;
         deletePostBtn(); 
+        tagTrends();
 
     } catch (error) {
         throw new Error(error);
@@ -87,5 +90,67 @@ async function deletePostBtn() {
         return new Promise(resolve => {
           setTimeout(resolve, ms);
         });
+    }
+}
+
+async function tagTrends() {
+    console.log(allTags);
+    const trendsBtn = document.getElementById("trends-btn");
+    const trendsContainer = document.getElementById("tag-trends");
+    let uniqueTags = new Set(allTags);
+    let tagStats = {};
+    let tagsTotal = 0;
+    let highestNumber = 0;
+
+    //  Get the stats
+    for (let tag of uniqueTags) {
+        let tagCounter = allTags.filter(value => value === tag).length;
+        tagStats[tag] = tagCounter;
+        tagsTotal += tagCounter;
+    }
+    console.log(tagsTotal);
+    console.log(tagStats);
+
+    let percentageArray = [];
+    //  tag percentage of total tags
+    for (let prop in tagStats) {
+        tagStats[prop] /= tagsTotal;
+        tagStats[prop] = tagStats[prop] * 100;
+        console.log(prop + " " + tagStats[prop]);
+        percentageArray.push(tagStats[prop]);
+    }
+
+    highestNumber = Math.max(...percentageArray);
+    
+    let trendHTML = `
+                <p><b>Tags</b><i> - what do you write about the most?</i></p>
+                <div id="tag-trends-dyn-container">
+            `;
+    for (let prop in tagStats) {
+        trendHTML += 
+            `
+            <span style="display:inline-block; background-color: whitesmoke; 
+            filter: opacity(calc(${tagStats[prop]}/${highestNumber})); 
+            border: 1px solid black; width: ${tagStats[prop]}%">
+            ${prop}
+            </span>
+            `;
+    }
+    trendHTML += `</div>`;
+    trendsContainer.innerHTML = trendHTML;
+
+    trendsBtn.addEventListener("click", function() {
+        $(trendsContainer).slideToggle();
+        this.innerText = trendsBtnInnerText(this);
+    });
+    function trendsBtnInnerText(key) {
+        switch (key.innerText) {
+            case "Show Trends":
+                return "Close Trends";
+            case "Close Trends":
+                return "Show Trends";
+            default:
+                return;
+        }
     }
 }

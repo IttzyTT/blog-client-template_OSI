@@ -13,33 +13,41 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="center-block-element">
-      <nav id="admin-top-nav">
-        <a href="../index.html">&#x2190; Back to the blog</a>
-      </nav>
-      <h1>Handle blog posts</h1>
-      <nav id="admin-create-post-nav">
-        <a href="./create-post.html">Create Post</a>
-      </nav>
-      <section>
-        <table id="table-manage-posts" class="table table-hover">
-          <thead>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Tags</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </thead>
-        </table>
-      </section>
+    <div id="admin-content-margins">
+      <div class="center-block-element">
+        <nav id="admin-top-nav">
+          <a href="../index.html">&#x2190; Back to the blog</a>
+        </nav>
+          <h1>Handle blog posts</h1>
+        <nav id="admin-create-post-nav">
+          <a href="./create-post.html">Create Post</a>
+        </nav>
+        <button type="button" class="btn-bright-template" id="trends-btn">Show Trends</button>
+        <section id="tag-trends">
+          <!-- dynamic content -->
+        </section>
+        <section>
+          <table id="table-manage-posts" class="table table-hover">
+            <thead>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Tags</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </thead>
+          </table>
+        </section>
+      </div>
     </div>
+
     <div id="delete-are-you-sure">
       <p>Are you sure?</p>
       <span>
-          <button type="button" id="admin-confirm-delete-btn">Yes, delete post</button>
-          <button type="button" id="admin-cancel-delete-btn">Cancel</button>
+          <button type="button" class="btn-bright-template" id="admin-confirm-delete-btn">Yes, delete post</button>
+          <button type="button" class="btn-bright-template" id="admin-cancel-delete-btn">Cancel</button>
       </span>
     </div> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/manage-posts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>
