@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 header {
-  background-color: black;
+  background-color: rgb(231, 213, 148);
   display: flex;
   justify-content: flex-end;
   height: 50px;
@@ -22,9 +22,12 @@ header a {
   margin-right: 60px;
   margin-top: 10px;
 }
+header a:hover {
+  background-color: rgb(201, 136, 46);
+}
 
 body {
-  background-color: rgb(40, 39, 39);
+  background-color: rgb(231, 213, 148);
   font-size: 1rem;
 }
 
@@ -56,7 +59,7 @@ h1 {
   margin: auto;
   width: 800px;
   padding: 4rem;
-  margin-top: 6px;
+  margin-top: 10px;
   border-radius: 2px;
   display: grid;
   grid-template-columns: min-content auto;
