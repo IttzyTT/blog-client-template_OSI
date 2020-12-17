@@ -224,6 +224,8 @@ a {
   transform: translateX(-50%);
 }
 #trends-btn {
+  position: absolute;
+  z-index: 10;
   color: initial;
   padding: 3px 12px;
   background-color: var(--light-color);

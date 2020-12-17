@@ -146,16 +146,23 @@ async function tagTrends() {
     trendHTML += `</div>`;
     trendsDynContent.insertAdjacentHTML("afterbegin", trendHTML);
 
+    $(trendsBtn).hover(() => {
+        $(trendsBtn).animate({paddingTop: "6px"}, 200);
+    }, () => {
+        $(trendsBtn).animate({paddingTop: "3px"}, 200);
+    });
+
     trendsBtn.addEventListener("click", function() {
         $(trendsDynContent).slideToggle("slow", "linear");
-        this.innerText = trendsBtnInnerText(this);
+        console.log(this.innerHTML);
+        this.innerHTML = trendsBtnInnerText(this);
     });
     function trendsBtnInnerText(key) {
-        switch (key.innerText) {
-            case "Show Trends":
-                return "Close Trends";
-            case "Close Trends":
-                return "Show Trends";
+        switch (key.innerHTML) {
+            case `<i class="fas fa-chart-line"></i> Show Trends`:
+                return `<i class="fas fa-chart-line"></i> Close Trends`;
+            case `<i class="fas fa-chart-line"></i> Close Trends`:
+                return `<i class="fas fa-chart-line"></i> Show Trends`;
             default:
                 return;
         }
