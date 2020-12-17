@@ -138,7 +138,7 @@ async function tagTrends() {
             `
             <span style="display:inline-block; background-color: whitesmoke; 
             filter: opacity(calc(${tagStats[prop]}/${highestNumber})); 
-            border: 1px solid black; width: ${tagStats[prop]}%">
+            border: 1px solid black; width: ${tagStats[prop]}%; height: min-content;">
             ${prop}
             </span>
             `;
@@ -147,7 +147,7 @@ async function tagTrends() {
     trendsDynContent.insertAdjacentHTML("afterbegin", trendHTML);
 
     trendsBtn.addEventListener("click", function() {
-        $(trendsDynContent).slideToggle();
+        $(trendsDynContent).slideToggle("slow", "linear");
         this.innerText = trendsBtnInnerText(this);
     });
     function trendsBtnInnerText(key) {
@@ -160,7 +160,7 @@ async function tagTrends() {
                 return;
         }
     }
-    trendContainer.style.width = contentWidth() + "px";
+    trendsDynContent.style.width = contentWidth() + "px";
 }
 
 function contentWidth() {
