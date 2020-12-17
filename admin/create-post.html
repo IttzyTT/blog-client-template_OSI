@@ -26,7 +26,7 @@
     <div class="container">
       <form id="form-post">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="Title.." />
+        <input type="text" id="title" name="title" placeholder="Title.." required />
 
         <label for="author">Author</label>
         <input
@@ -34,6 +34,7 @@
           id="author"
           name="author"
           placeholder="Your name.."
+          required
         />
 
         <label for="content"
@@ -44,13 +45,14 @@
           id="content"
           placeholder="Write something.."
           style="height: 100px"
+          required
         ></textarea>
 
         <label for="tags">Tags</label>
         <select name="tags" id="tags" multiple required>
           <option value="travel">Travel</option>
           <option value="food">Food</option>
-          <option value="chopping">Chopping</option>
+          <option value="shopping">Shopping</option>
           <option value="economy">Economy</option>
           <option value="pay">Pay</option>
         </select>
@@ -58,11 +60,11 @@
         <button id="create">Add post <i class="fas fa-plus-square"></i></button
         ><br />
 
-        <button class="back-to-blog-create">
-          <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a
-            ></a>
-        </button>
       </form>
+      <button class="back-to-blog-create">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back</a
+          ></a>
+      </button>
     </div>
 
     <script src="js/create-post.js"></script>

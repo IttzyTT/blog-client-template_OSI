@@ -83,7 +83,7 @@ button[id='create']:hover {
 }
 
 .container {
-  display: flex;
+  /* display: flex; */
   border-radius: 5px;
   background-color: var(--light-color);
   padding: 20px;
