@@ -155,9 +155,9 @@ async function tagTrends() {
     trendsBtn.addEventListener("click", function() {
         $(trendsDynContent).slideToggle("slow", "linear");
         console.log(this.innerHTML);
-        this.innerHTML = trendsBtnInnerText(this);
+        this.innerHTML = trendsBtnInnerHTML(this);
     });
-    function trendsBtnInnerText(key) {
+    function trendsBtnInnerHTML(key) {
         switch (key.innerHTML) {
             case `<i class="fas fa-chart-line"></i> Show Trends`:
                 return `<i class="fas fa-chart-line"></i> Close Trends`;
