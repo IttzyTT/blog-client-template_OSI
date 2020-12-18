@@ -24,36 +24,61 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+
     <div class="center-block-element">
-      <div id="trend-container">
-        <section id="tag-trends">
-          <!-- dynamic content -->
-          <div id="trend-spacer"></div>
-        </section>
-        <div id="trend-btn-container">
-          <button type="button" class="btn-bright-template" id="trends-btn">Show Trends</button>
-        </div>
-      </div>
       <nav id="admin-top-nav">
-        <a id="create-post" href="./create-post.html"
-          >New Post <i class="fas fa-plus-square"></i
-        ></a>
-        <a class="back-to-blog" href="../index.html"
-          ><i class="fas fa-arrow-left"></i> Back to the blog</a
-        >
+        <a href="../index.html">&#x2190; Back to the blog</a>
       </nav>
       <h1>Handle blog posts</h1>
       <section>
-        <table id="table-manage-posts" class="table table-hover">
+        <table id="table-manage-posts">
           <thead>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Tags</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
+            <td><b>Title</b></td>
+            <td><b>Author</b></td>
+            <td><b>Tags</b></td>
+            <td><b>Date</b></td>
+            <td><b>Action</b></td>
           </thead>
         </table>
+
+    <div id="top-drawer">
+      <section id="tag-trends">
+        <!-- dynamic content -->
+        <div id="trend-spacer"></div>
+
       </section>
+      <nav id="admin-create-post-nav">
+        <a href="./create-post.html">Create Post</a>
+      </nav>
+    </div>
+    <div id="visible-content">
+      <div class="center-block-element">
+        <div id="trend-container">
+          <div id="trend-btn-container">
+            <button type="button" id="trends-btn"><i class="fas fa-chart-line"></i> Show Trends</button>
+          </div>
+        </div>
+        <nav id="admin-top-nav">
+          <a id="create-post" href="./create-post.html"
+            >New Post <i class="fas fa-plus-square"></i
+          ></a>
+          <a class="back-to-blog" href="../index.html"
+            ><i class="fas fa-arrow-left"></i> Back to the blog</a
+          >
+        </nav>
+        <h1>Handle blog posts</h1>
+        <section>
+          <table id="table-manage-posts" class="table table-hover">
+            <thead>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Tags</th>
+              <th scope="col">Date</th>
+              <th scope="col">Action</th>
+            </thead>
+          </table>
+        </section>
+      </div>
     </div>
 
     <div id="delete-are-you-sure">

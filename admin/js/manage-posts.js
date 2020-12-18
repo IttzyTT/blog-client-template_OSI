@@ -138,7 +138,7 @@ async function tagTrends() {
             `
             <span style="display:inline-block; background-color: whitesmoke; 
             filter: opacity(calc(${tagStats[prop]}/${highestNumber})); 
-            border: 1px solid black; width: ${tagStats[prop]}%">
+            border: 1px solid black; width: ${tagStats[prop]}%; height: min-content;">
             ${prop}
             </span>
             `;
@@ -146,21 +146,28 @@ async function tagTrends() {
     trendHTML += `</div>`;
     trendsDynContent.insertAdjacentHTML("afterbegin", trendHTML);
 
-    trendsBtn.addEventListener("click", function() {
-        $(trendsDynContent).slideToggle();
-        this.innerText = trendsBtnInnerText(this);
+    $(trendsBtn).hover(() => {
+        $(trendsBtn).animate({paddingTop: "6px"}, 200);
+    }, () => {
+        $(trendsBtn).animate({paddingTop: "3px"}, 200);
     });
-    function trendsBtnInnerText(key) {
-        switch (key.innerText) {
-            case "Show Trends":
-                return "Close Trends";
-            case "Close Trends":
-                return "Show Trends";
+
+    trendsBtn.addEventListener("click", function() {
+        $(trendsDynContent).slideToggle("slow", "linear");
+        console.log(this.innerHTML);
+        this.innerHTML = trendsBtnInnerHTML(this);
+    });
+    function trendsBtnInnerHTML(key) {
+        switch (key.innerHTML) {
+            case `<i class="fas fa-chart-line"></i> Show Trends`:
+                return `<i class="fas fa-chart-line"></i> Close Trends`;
+            case `<i class="fas fa-chart-line"></i> Close Trends`:
+                return `<i class="fas fa-chart-line"></i> Show Trends`;
             default:
                 return;
         }
     }
-    trendContainer.style.width = contentWidth() + "px";
+    trendsDynContent.style.width = contentWidth() + "px";
 }
 
 function contentWidth() {

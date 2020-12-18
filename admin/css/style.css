@@ -14,7 +14,11 @@ body {
 }
 
 header h3 {
+
+  color: white;
+
   color: rgb(47, 47, 47);
+
   display: flex;
   justify-content: center;
   font-size: 2rem;
@@ -41,8 +45,15 @@ select {
   margin-bottom: 16px;
 }
 
+
+button[id='create'], 
+#update-post-btn{
+  background-color: black;
+}
+
 .btn-bright-template {
   background-color: rgb(55, 211, 211);
+
   color: white;
   padding: 12px 20px;
   border: none;
@@ -50,8 +61,15 @@ select {
   cursor: pointer;
 }
 
+
+button[id='create']:hover,
+#update-post-btn:hover {
+   background-color: #7a7d7d;
+}
+
 .btn-bright-template:hover {
   background-color: #63bfe6;
+
 }
 
 /* CREATE POST BUTTONS */
@@ -83,13 +101,14 @@ button[id='create']:hover {
 }
 
 .container {
-  display: flex;
+  /* display: flex; */
   border-radius: 5px;
   background-color: var(--light-color);
   padding: 20px;
   width: 50%;
   margin-left: 25%;
 }
+
 
 /* // NAV ADMIN  */
 
@@ -126,9 +145,10 @@ button[id='create']:hover {
   cursor: pointer;
 }
 
+
 #table-manage-posts {
   background-color: var(--light-color);
-  width: 900px;
+  /* width: 900px; */
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 0.3em;
@@ -142,11 +162,49 @@ a {
   text-decoration: none;
 }
 .center-block-element {
-  padding: 30px;
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
+
 }
+#admin-top-nav a,
+#admin-create-post-nav a {
+    margin-bottom: 30px;
+    margin-left: 50%;
+    display: flex;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: 1px solid black;
+    height: 3.9em;
+    width: 4.4em;
+    margin-top: 10px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-family: 'Concert One';
+    box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+#admin-top-nav a:hover,
+#admin-create-post-nav a:hover{
+    background-color: #7a7d7d;
+    width: min-content;
+
+
+}
+
+/* #admin-create-post-nav a {
+  color: aqua;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: black;
+  font-family: sans-serif;
+} */
+
+ 
+
+
 
 #lorem-txt {
   margin-left: 10px;
@@ -204,34 +262,52 @@ a {
           filter: opacity(0);
         }
 }
+#top-drawer {
+  background-image: linear-gradient(rgb(165, 217, 238) 40%, rgb(165, 217, 238), whitesmoke);
+}
 #trend-container {
   position: relative;
-  z-index: 10;
-  top: -30px;
+  padding: 0;
+  margin: 0;
 }
 #tag-trends {
   display: none;
-  border-bottom: 1px solid black;
+  height: min-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 #trends-btn {
+  position: absolute;
+  z-index: 10;
   color: initial;
   padding: 3px 12px;
   background-color: var(--light-color);
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 0;
+  border-right: 0px solid black;
+  border-bottom: 0px solid black;
+  border-left: 0px solid black;
   border-radius: 15px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  transition: box-shadow 200ms;
+}
+#trends-btn:hover {
+  box-shadow: 0 8px 6px -6px black;
+}
+#trends-btn:focus {
+  outline: none;
 }
 #tag-trends p {
-  margin-top: 1rem;
+  padding-top: 1rem;
   margin-bottom: 0;
+  color: initial;
 }
 #tag-trends-dyn-container {
   display: flex; 
   text-align: center;
   height: 100%;
+  margin-bottom: 1rem;
 }
 #trend-spacer {
   height: 1rem;
