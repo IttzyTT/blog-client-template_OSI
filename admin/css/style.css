@@ -14,7 +14,11 @@ body {
 }
 
 header h3 {
+
+  color: white;
+
   color: rgb(47, 47, 47);
+
   display: flex;
   justify-content: center;
   font-size: 2rem;
@@ -41,8 +45,15 @@ select {
   margin-bottom: 16px;
 }
 
+
+button[id='create'], 
+#update-post-btn{
+  background-color: black;
+}
+
 .btn-bright-template {
   background-color: rgb(55, 211, 211);
+
   color: white;
   padding: 12px 20px;
   border: none;
@@ -50,8 +61,15 @@ select {
   cursor: pointer;
 }
 
+
+button[id='create']:hover,
+#update-post-btn:hover {
+   background-color: #7a7d7d;
+}
+
 .btn-bright-template:hover {
   background-color: #63bfe6;
+
 }
 
 /* CREATE POST BUTTONS */
@@ -91,6 +109,7 @@ button[id='create']:hover {
   margin-left: 25%;
 }
 
+
 /* // NAV ADMIN  */
 
 #admin-top-nav {
@@ -126,6 +145,7 @@ button[id='create']:hover {
   cursor: pointer;
 }
 
+
 #table-manage-posts {
   background-color: var(--light-color);
   /* width: 900px; */
@@ -145,8 +165,46 @@ a {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  width: min-content;
+
 }
+#admin-top-nav a,
+#admin-create-post-nav a {
+    margin-bottom: 30px;
+    margin-left: 50%;
+    display: flex;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    border: 1px solid black;
+    height: 3.9em;
+    width: 4.4em;
+    margin-top: 10px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-family: 'Concert One';
+    box-shadow: 6px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
+#admin-top-nav a:hover,
+#admin-create-post-nav a:hover{
+    background-color: #7a7d7d;
+    width: min-content;
+
+
+}
+
+/* #admin-create-post-nav a {
+  color: aqua;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background-color: black;
+  font-family: sans-serif;
+} */
+
+ 
+
+
 
 #lorem-txt {
   margin-left: 10px;
